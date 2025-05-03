@@ -5,6 +5,6 @@
 @section('content')
     <h1>Bienvenido a nuestra tienda</h1>
     @guest
-        <p>Regístrate para comprar</p>
+    <x-product-card/>
     @endguest
 @endsection
