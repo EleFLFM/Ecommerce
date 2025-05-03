@@ -1,4 +1,3 @@
-
 <div class="register-container">
     <div class="register-form-wrapper">
         <h2 class="register-title">REGISTRO</h2>

@@ -1,46 +1,38 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-// Página de inicio pública
+use Illuminate\Support\Facades\Auth;
+// Ruta principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Rutas de autenticación (login, registro, etc.)
-require __DIR__.'/auth.php';
+// Autenticación
+Auth::routes();
 
-// Grupo de rutas PARA TODOS LOS USUARIOS AUTENTICADOS
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Dashboard genérico (redirige según rol)
-    Route::get('/dashboard', function () {
-        return auth()->user()->role === 'admin' 
-            ? redirect()->route('admin.dashboard')
-            : view('dashboard');
-    })->name('dashboard');
+// Grupo de rutas protegidas
+Route::middleware(['auth'])->group(function () {
+    // Perfil de usuario
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     
-    // Rutas de perfil compartidas
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Productos (acceso público pero creación/edición solo para admin)
+    Route::resource('products', ProductController::class);
     
-    // Rutas exclusivas para CLIENTES
-    Route::middleware('can:client')->group(function () {
-        Route::get('/my-account', [HomeController::class, 'account'])->name('client.account');
-        // Otras rutas para clientes...
+    // Carrito de compras
+    Route::resource('cart', CartController::class)->only(['index', 'store', 'update', 'destroy']);
+    
+    // Rutas de administración
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     });
 });
 
-// Grupo de rutas EXCLUSIVAS PARA ADMIN
-Route::middleware(['auth', 'verified', 'is_admin'])->prefix('admin')->group(function () {
-    // Dashboard admin
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    
-    // Panel de administración
-    Route::get('/panel', [AdminController::class, 'panel'])->name('admin.panel');
-    
-    // Perfil admin (opcional, puede usar el genérico)
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
-});
+// Redirección después de login
+Route::get('/home', [HomeController::class, 'redirect'])->name('home.redirect');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
