@@ -28,6 +28,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role', // Añadido para gestión de roles
+        'phone',
+    'address',
+
     ];
 
     /**
