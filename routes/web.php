@@ -40,3 +40,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // productois
 Route::get('/home', [ProductController::class, 'index'])->name('productos.index');
+
+
+Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->name('productos.categoria');
+

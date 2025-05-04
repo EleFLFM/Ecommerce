@@ -15,19 +15,31 @@ class ProductSeeder extends Seeder
     {
         
         Product::create([
-            'name' => 'Teclado mecánico',
+            'name' => 'Vestido floral',
             'price' => 49.99,
+            'category_id' => 1,
+
         ]);
 
         Product::create([
-            'name' => 'Mouse gamer',
+            'name' => 'Blusa elegante',
             'price' => 25.00,
+            'category_id' => 1,
+
         ]);
 
         Product::create([
-            'name' => 'Monitor LED 24"',
+            'name' => 'Pantalón lino',
             'price' => 120.00,
+            'category_id' => 1,
+
         ]);
+        Product::create([
+            'name' => 'Falda mini',
+            'price' => 120.00,
+            'category_id' => 1,
+        ]);
+        
         
     }
 }

@@ -4,6 +4,9 @@ namespace Database\Seeders;
 use Database\Seeders\ProductSeeder;
 use Database\Seeders\AdminUserSeeder;
 use Database\Seeders\ClientUserSeeder;
+use Database\Seeders\CategorySeeder;
+
+
 
 
 
@@ -26,9 +29,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            CategorySeeder::class,
             ProductSeeder::class,
             AdminUserSeeder::class,
             ClientUserSeeder::class,
+
         ]);
     }
 }
