@@ -13,7 +13,7 @@ class ClientUserSeeder extends Seeder
         User::create([
             'name' => 'Cliente Ejemplo',
             'email' => 'client@client.com',
-            'password' => Hash::make('client123'), // Cambia esto por una contraseña segura
+            'password' => Hash::make('client123'),
             'role' => 'client',
             'phone' => '0987654321',
             'address' => 'Avenida Secundaria #456',
