@@ -5,11 +5,10 @@
     <div class="card__content">
       <div style="--bg-color: #a78bfa" class="card__image"></div>
       <div class="card__text">
-        <p class="card__title">Premium Design</p>
-        <p class="card__description">Hover to reveal stunning effects</p>
+        <h5 class="card-title">{{ $product->name }}</h5>
       </div>
       <div class="card__footer">
-        <div class="card__price">$49.99</div>
+        <div class="card__price"> ${{ number_format($product->price, 2) }}</div>
         <div class="card__button">
           <svg height="16" width="16" viewBox="0 0 24 24">
             <path
