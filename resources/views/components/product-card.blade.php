@@ -1,14 +1,14 @@
 <!-- From Uiverse.io by SachinKumar666 --> 
-<div class="card">
+<div style="border-color: #d4af37" class="card">
     <div class="card__shine"></div>
     <div class="card__glow"></div>
     <div class="card__content">
       <div style="--bg-color: #a78bfa" class="card__image"></div>
       <div class="card__text">
-        <h5 class="card-title">{{ $product->name }}</h5>
+        <h5 style="color:white" class="card-title">{{ $product->name }}</h5>
       </div>
       <div class="card__footer">
-        <div class="card__price"> ${{ number_format($product->price, 2) }}</div>
+        <div style="color:#d4af37" class="card__price"> ${{ number_format($product->price, 2) }}</div>
         <div class="card__button">
           <svg height="16" width="16" viewBox="0 0 24 24">
             <path
@@ -25,8 +25,8 @@
   
 <style>
 .card {
-  --card-bg: #ffffff;
-  --card-accent: #7c3aed;
+  --card-bg: #121212;
+  --card-accent: #d4af37;
   --card-text: #1e293b;
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 
@@ -49,7 +49,7 @@
   background: linear-gradient(
     120deg,
     rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.8) 50%,
+    rgba(55, 42, 42, 0.8) 50%,
     rgba(255, 255, 255, 0) 60%
   );
   opacity: 0;
@@ -129,7 +129,7 @@
 }
 
 .card__title {
-  color: var(--card-text);
+  color: white;
   font-size: 1.1em;
   margin: 0;
   font-weight: 700;
