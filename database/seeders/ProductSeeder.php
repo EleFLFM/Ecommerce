@@ -35,7 +35,7 @@ class ProductSeeder extends Seeder
             'color' => 'Azul',
             'category_id' => 2,
         ]);
-        Product::create([
+        Product::create([   
             'name' => 'Pantalones cortos',
             'price' => 29.99,
             'stock' => 8,
