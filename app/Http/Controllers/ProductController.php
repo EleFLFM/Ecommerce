@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,15 @@ class ProductController extends Controller
         $products = Product::all();
         return view('client.dashboard', compact('products'));
     }
-
+    //filtrar por categorias
+    
+    public function porCategoria($slug)
+    {
+        $category = Category::where('name', $slug)->firstOrFail();
+        $products = Product::where('category_id', $category->id)->get();
+    
+        return view('client.dashboard', compact('products', 'category'));
+    }
     /**
      * Show the form for creating a new resource.
      */

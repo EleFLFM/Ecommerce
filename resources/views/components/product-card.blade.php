@@ -30,8 +30,8 @@
   --card-text: #1e293b;
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 
-  width: 190px;
-  height: 254px;
+  width: 290px;
+  height: 450px;
   background: var(--card-bg);
   border-radius: 20px;
   position: relative;
@@ -95,7 +95,7 @@
 
 .card__image {
   width: 100%;
-  height: 100px;
+  height: 80%;
   background: linear-gradient(45deg, #a78bfa, #8b5cf6);
   border-radius: 12px;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
