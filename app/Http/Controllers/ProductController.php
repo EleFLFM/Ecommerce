@@ -14,8 +14,8 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::all();
-        return view('client.dashboard', compact('products'));
+        $productos = Product::all();
+        return view('client.dashboard', compact('productos'));
     }
     //filtrar por categorias
 

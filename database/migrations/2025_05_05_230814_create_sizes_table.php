@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Ej: 'S', 'M', 'L', 'XL'
-            $table->string('description')->nullable(); // Descripción opcional
+            $table->string('name');
             $table->timestamps();
         });
     }

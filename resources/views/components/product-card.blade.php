@@ -9,16 +9,7 @@
       </div>
       <div class="card__footer">
         <div style="color:#d4af37" class="card__price"> ${{ number_format($product->price, 2) }}</div>
-        <div class="card__button">
-          <svg height="16" width="16" viewBox="0 0 24 24">
-            <path
-              stroke-width="2"
-              stroke="currentColor"
-              d="M4 12H20M12 4V20"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </div>
+        
       </div>
     </div>
   </div>
