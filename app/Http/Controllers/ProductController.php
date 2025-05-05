@@ -13,22 +13,25 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+
         $products = Product::all();
         return view('client.dashboard', compact('products'));
     }
     //filtrar por categorias
-    
+
     public function porCategoria($slug)
     {
         $category = Category::where('name', $slug)->firstOrFail();
         $products = Product::where('category_id', $category->id)->get();
-    
+
         return view('client.dashboard', compact('products', 'category'));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function show($id)
+    {
+        $producto = Product::with('category')->findOrFail($id); // Asegúrate de tener la relación con categoría
+
+        return view('products.show', compact('producto'));
+    }
     public function create()
     {
         //
@@ -45,10 +48,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

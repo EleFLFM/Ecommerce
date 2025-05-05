@@ -40,6 +40,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // productois
 Route::get('/home', [ProductController::class, 'index'])->name('productos.index');
+Route::get('/productos/{id}', [ProductController::class, 'show'])->name('productos.show');
+
 
 
 Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->name('productos.categoria');
