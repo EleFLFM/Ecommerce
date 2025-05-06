@@ -55,8 +55,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // productois
 Route::get('/home', [ProductController::class, 'index'])->name('productos.index');
 Route::get('/productos/{id}', [ProductController::class, 'show'])->name('productos.show');
-
-
-
 Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->name('productos.categoria');
+
+//carrito de compras
+use App\Http\Controllers\CarritoController;
+
+Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
+Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+
 
