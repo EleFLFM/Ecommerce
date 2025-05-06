@@ -64,6 +64,12 @@
                     @endif
                 @else
                     <ul class="nav-links">
+                        <li>
+                            <a style="width: 115px" href="{{ route('carrito.index') }}" class="btn btn-outline-secondary">
+                                🛒 Carrito ({{ count(session('carrito', [])) }})
+                            </a>
+                            
+                        </li>
                         <li class="dropdown">
                             <a href="#"> <i class="bi bi-person-fill"></i>
                                 {{ Auth::user()->name }}</a>
@@ -79,6 +85,7 @@
                                 </form>
                             </div>
                         </li>
+                        
                     </ul>
                 @endguest
             </ul>
