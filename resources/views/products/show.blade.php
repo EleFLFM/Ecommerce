@@ -46,10 +46,12 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="add-to-cart">AÑADIR AL CARRITO</button>
-                    <div class="wishlist-btn">
-                        <i class="far fa-heart"></i>
-                    </div>
+                    <form action="{{ route('carrito.agregar') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </form>
+
                 </div>
 
             </div>
