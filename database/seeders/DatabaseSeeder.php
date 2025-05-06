@@ -6,10 +6,6 @@ use Database\Seeders\AdminUserSeeder;
 use Database\Seeders\ClientUserSeeder;
 use Database\Seeders\CategorySeeder;
 
-
-
-
-
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,7 +29,6 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             AdminUserSeeder::class,
             ClientUserSeeder::class,
-
         ]);
     }
 }

@@ -15,14 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 8, 2);
-            $table->integer('stock')->default(0); // Corregido: eliminé el (10)
+            $table->integer('stock')->default(0);
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('size')->nullable();
-            $table->string('color')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -30,10 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_color');
-        Schema::dropIfExists('product_size');
-        Schema::dropIfExists('colors');
-        Schema::dropIfExists('sizes');
         Schema::dropIfExists('products');
     }
 };
