@@ -11,8 +11,8 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function panel()
-    {
-        return view('admin.panel');
-    }
+    // public function panel()
+    // {
+    //     return view('admin.panel');
+    // }
 }
