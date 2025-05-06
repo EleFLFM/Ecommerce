@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -30,7 +31,16 @@ Route::middleware(['auth'])->group(function () {
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     
 
-     //usuarios
+     Route::resource('categories', CategoryController::class)->names([
+        'index' => 'admin.categories.index',
+        'create' => 'admin.categories.create',
+        'store' => 'admin.categories.store',
+        'show' => 'admin.categories.show',
+        'edit' => 'admin.categories.edit',
+        'destroy' => 'admin.categories.destroy'
+    ]);
+   
+     
      // Usuarios (si necesitas gestión de usuarios)
     Route::resource('user', UserController::class);
     Route::get('/users', [UserController::class, 'UserController'])->name('admin.users.index');
