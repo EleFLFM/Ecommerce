@@ -13,9 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        $productos = Product::all();
-        return view('client.dashboard', compact('productos'));
+        $products = Product::all();
+        return view('products.index', compact('products'));
     }
     //filtrar por categorias
 
@@ -34,7 +33,8 @@ class ProductController extends Controller
     }
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('products.create',compact('categories'));
     }
 
     /**
@@ -42,7 +42,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validación de datos básicos
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+    
+        // Procesar la imagen si se subió
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
+    
+        // Crear el producto
+        Product::create($validated);
+    
+        return redirect()->route('admin.products.index')
+            ->with('success', 'Producto creado exitosamente');
     }
 
     /**
