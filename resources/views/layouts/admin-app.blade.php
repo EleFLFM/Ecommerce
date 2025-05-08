@@ -17,6 +17,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
 </head>
 
 <body style="background-color: #121212">
@@ -54,8 +57,8 @@
                     </a>
                     <div class="sidebar-submenu">
                         <a href="{{ route('admin.products.index') }}">Listar Productos</a>
-                        <a href="{{-- {{ route('admin.products.create') }} --}}">Crear Producto</a>
-                        <a href="{{-- {{ route('admin.categories.index') }} --}}">Categorías</a>
+                        <a href="{{ route('admin.products.create') }}">Crear Producto</a>
+                        <a href="{{ route('admin.categories.index') }}">Categorías</a>
                     </div>
                 </li>
                 
@@ -78,22 +81,24 @@
                     </button>
                 </div>
                 
-                <div class="topbar-right">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-fill"></i> {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </div>
-                </div>
+               <!-- En tu layout admin-app.blade.php -->
+<div class="dropdown">
+    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ Auth::user()->name }}
+    </a>
+    
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+               Cerrar sesión
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </li>
+    </ul>
+</div>
             </nav>
 
             <!-- Contenido dinámico -->
@@ -121,6 +126,7 @@
             });
         });
     </script>
+    
 </body>
 
 </html>
