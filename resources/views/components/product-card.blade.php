@@ -3,7 +3,11 @@
     <div class="card__shine"></div>
     <div class="card__glow"></div>
     <div class="card__content">
-      <div style="--bg-color: #a78bfa" class="card__image"></div>
+      <div style="--bg-color: #a78bfa" class="card__image">@if($product->image)
+        <img style="object-fit:cover" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" width="100%" height="100%">
+        @else
+        <span class="text-muted">Sin imagen</span>
+        @endif</div>
       <div class="card__text">
         <h5 style="color:white" class="card-title">{{ $product->name }}</h5>
       </div>

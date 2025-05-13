@@ -5,14 +5,17 @@
     <h2 style="color: aliceblue">Carrito de compras</h2>
 
     @if(session('carrito') && count(session('carrito')) > 0)
-        <table class="table">
+       <div > 
+        <table class="table table-bordered table-dark">
             <thead>
                 <tr>
                     <th>Producto</th>
                     <th>Precio</th>
+                    <th>Color</th>
+                    <th>Talla</th>
                     <th>Cantidad</th>
                     <th>Total</th>
-                    <th></th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +25,8 @@
                     <tr>
                         <td>{{ $item['nombre'] }}</td>
                         <td>${{ $item['precio'] }}</td>
+                        <td>{{ $item['color'] }}</td>
+                        <td>{{ $item['talla'] }}</td>
                         <td>
                             <form action="{{ route('carrito.actualizar') }}" method="POST" class="d-inline">
                                 @csrf
@@ -42,12 +47,13 @@
                 @endforeach
             </tbody>
         </table>
-
+    </div>
         <h4 style="color: white">Total: ${{ $total }}</h4>
         <a href="{{ route('home') }}" class="btn btn-primary">Seguir comprando</a>
 
         <a href="#" class="btn btn-success">Proceder al pago</a>
-    @else
+    
+        @else
         <p>No hay productos en el carrito.</p>
         <a href="{{ route('home') }}" class="btn btn-primary">Ir a comprar</a>
     @endif
