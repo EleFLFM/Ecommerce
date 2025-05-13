@@ -12,17 +12,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * Roles disponibles
-     */
+  
     public const ROLE_ADMIN = 'admin';
     public const ROLE_CLIENT = 'client';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+
     protected $fillable = [
         'name',
         'email',
@@ -33,21 +27,13 @@ class User extends Authenticatable
 
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+ 
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+
     protected function casts(): array
     {
         return [
@@ -57,35 +43,21 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Verifica si el usuario es administrador
-     */
+
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
     }
 
-    /**
-     * Verifica si el usuario es cliente
-     */
     public function isClient(): bool
     {
         return $this->role === self::ROLE_CLIENT;
     }
-
-    /**
-     * Relación con los pedidos (orders) del usuario
-     */
-   
-
-    /**
-     * Relación con los items del carrito (cart items)
-     */
-   
-
-    /**
-     * Asigna el rol de cliente por defecto al crear usuario
-     */
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
+    
     protected static function boot()
     {
         parent::boot();
