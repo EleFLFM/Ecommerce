@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PedidosController extends Controller
 {
+    //Este es para el pedidos.index de el admin donde se van a listar todos los pedidos de los usuarios
+   public function indexAdmin()
+{
+    $pedidos = Pedido::with(['usuario', 'detalles.producto'])
+        ->latest()
+        ->get();
+        
+    return view('pedidos.index', compact('pedidos'));
+}
     public function confirmarPedido()
     {
         $carrito = session('carrito', []);
@@ -53,6 +62,7 @@ class PedidosController extends Controller
     }
     public function misPedidos()
     {
+        //esto es para los pedidos de los usuarios
         $usuario = Auth::user();
         $pedidos = $usuario->pedidos()->with('detalles.producto')->latest()->get();
 

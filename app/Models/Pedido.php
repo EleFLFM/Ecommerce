@@ -20,7 +20,7 @@ class Pedido extends Model
     // 🔁 Relación con el usuario (cliente que hizo el pedido)
     public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     // 🔁 Relación con los detalles del pedido
