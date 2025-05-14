@@ -55,14 +55,12 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-// Redirección después de login
-Route::get('/home', [HomeController::class, 'redirect'])->name('home.redirect');
-Auth::routes();
 
+// Redirección después de login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-// productois
+// productos
 Route::get('/home', [ProductController::class, 'index'])->name('productos.index');
 Route::get('/productos/{id}', [ProductController::class, 'show'])->name('productos.show');
 Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->name('productos.categoria');
@@ -70,7 +68,6 @@ Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->nam
 //carrito de compras
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidosController;
-
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
