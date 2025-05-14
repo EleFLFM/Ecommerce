@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+
 // Redirección después de login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
