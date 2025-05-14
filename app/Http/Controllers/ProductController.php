@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -74,7 +75,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -82,14 +86,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        
+        // Validación de datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Procesar la imagen si se subió una nueva
+        if ($request->hasFile('image')) {
+            // Eliminar la imagen anterior si existe
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        // Actualizar el producto
+        $product->update($validated);
+
+        return redirect()->route('admin.products.index')
+            ->with('success', 'Producto actualizado exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        //
+{
+    $product = Product::findOrFail($id);
+
+    // Eliminar la imagen si existe
+    if ($product->image) {
+        Storage::disk('public')->delete($product->image);
     }
+
+    // Eliminar el producto
+    $product->delete();
+
+    return redirect()->route('admin.products.index')
+        ->with('success', 'Producto eliminado exitosamente');
+}
 }

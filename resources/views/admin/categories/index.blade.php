@@ -1,6 +1,8 @@
 @extends('layouts.admin-app')
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Listado de Categorías</h1>
@@ -81,10 +83,7 @@
                         <label for="name" class="form-label">Nombre*</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -111,10 +110,10 @@
                         <label for="edit_name" class="form-label">Nombre*</label>
                         <input type="text" class="form-control" id="edit_name" name="name" required>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="edit_description" class="form-label">Descripción</label>
                         <textarea class="form-control" id="edit_description" name="description" rows="3"></textarea>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -132,7 +131,7 @@
     button.addEventListener('click', function() {
         const categoryId = this.getAttribute('data-id');
         const categoryName = this.getAttribute('data-name');
-        const categoryDescription = this.getAttribute('data-description');
+        //const categoryDescription = this.getAttribute('data-description');
         
         // Usar la ruta con nombre
         const form = document.getElementById('editCategoryForm');
@@ -140,7 +139,7 @@
         // Alternativa mejor: form.action = route('admin.categories.update', categoryId);
         
         document.getElementById('edit_name').value = categoryName;
-        document.getElementById('edit_description').value = categoryDescription || '';
+        // document.getElementById('edit_description').value = categoryDescription || '';
         
         const editModal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
         editModal.show();
