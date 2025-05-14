@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,7 +22,7 @@
 
 <body style="background-color: #121212">
 
-    <div  id="app">
+    <div id="app">
         <nav class="navbar">
             <div class="logo-container">
                 <div class="logo">
@@ -64,12 +65,16 @@
                     @endif
                 @else
                     <ul class="nav-links">
+                        <li><a style="width: 180px" href="{{ route('pedidos.mis') }}" class="btn btn-outline-primary">
+                                🧾 Ver mis pedidos
+                            </a></li>
                         <li>
                             <a style="width: 115px" href="{{ route('carrito.index') }}" class="btn btn-outline-secondary">
                                 🛒 Carrito ({{ count(session('carrito', [])) }})
                             </a>
-                            
+
                         </li>
+
                         <li class="dropdown">
                             <a href="#"> <i class="bi bi-person-fill"></i>
                                 {{ Auth::user()->name }}</a>
@@ -85,7 +90,7 @@
                                 </form>
                             </div>
                         </li>
-                        
+
                     </ul>
                 @endguest
             </ul>

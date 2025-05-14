@@ -91,7 +91,7 @@
 .card__image {
   width: 100%;
   height: 80%;
-  background: linear-gradient(45deg, #a78bfa, #8b5cf6);
+  background: linear-gradient(45deg, #e2e0e8, #1f123d);
   border-radius: 12px;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;

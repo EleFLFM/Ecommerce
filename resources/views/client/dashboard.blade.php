@@ -22,9 +22,7 @@
         <x-product-card :product="$product" />
     </a>
     @endforeach
-    <a href="{{ route('pedidos.mis') }}" class="btn btn-outline-primary">
-        🧾 Ver mis pedidos
-    </a>
+    
     
 </div>
 
