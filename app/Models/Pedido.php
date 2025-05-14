@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Product;
 
 class Pedido extends Model
 {
@@ -27,5 +29,9 @@ class Pedido extends Model
     public function detalles()
     {
         return $this->hasMany(DetallePedido::class);
+    }
+    public function getTotalFormateado()
+    {
+        return number_format($this->total, 2);
     }
 }

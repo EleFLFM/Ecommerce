@@ -26,12 +26,11 @@
                         @forelse($pedidos as $pedido)
                         <tr>
                             <td>#{{ $pedido->id }}</td>
-                            <td>{{ $pedido->usuario?->name ?? 'Usuario no encontrado' }}</td>
-                            <td>${{ number_format($pedido->total, 2) }}</td>
+                            <td>{{ $pedido->usuario->name ?? 'Usuario no encontrado' }}</td>
+                            <td>${{ $pedido->getTotalFormateado() }}</td>
                             <td>
                                 <span class="badge bg-{{ $pedido->estado === 'pendiente' ? 'warning' : 
-                                    ($pedido->estado === 'completado' ? 'success' : 
-                                    ($pedido->estado === 'cancelado' ? 'danger' : 'info')) }}">
+                                    ($pedido->estado === 'completado' ? 'success' : 'danger') }}">
                                     {{ ucfirst($pedido->estado) }}
                                 </span>
                             </td>
@@ -76,18 +75,22 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><strong>Cliente:</strong> {{ $pedido->usuario?->name ?? 'Usuario no encontrado' }}</p>
-                <p><strong>Email:</strong> {{ $pedido->usuario?->email ?? 'Email no disponible' }}</p>
+                <p><strong>Cliente:</strong> {{ $pedido->usuario->name ?? 'Usuario no encontrado' }}</p>
+                <p><strong>Email:</strong> {{ $pedido->usuario->email ?? 'Email no disponible' }}</p>
                 <p><strong>Fecha:</strong> {{ $pedido->created_at->format('d/m/Y H:i') }}</p>
                 <p><strong>Estado:</strong> {{ ucfirst($pedido->estado) }}</p>
-                <p><strong>Total:</strong> ${{ number_format($pedido->total, 2) }}</p>
+                <p><strong>Total:</strong> ${{ $pedido->getTotalFormateado() }}</p>
                 
                 <h6 class="mt-4">Productos:</h6>
                 <ul class="list-group list-group-flush bg-dark">
                     @foreach($pedido->detalles as $detalle)
                     <li class="list-group-item bg-dark text-white">
-                        {{ $detalle->producto->nombre }} x {{ $detalle->cantidad }}
-                        <span class="float-end">${{ number_format($detalle->precio * $detalle->cantidad, 2) }}</span>
+                        {{ $detalle->producto->nombre }} 
+                        <br>
+                        Talla: {{ $detalle->talla }} | Color: {{ $detalle->color }}
+                        <br>
+                        Cantidad: {{ $detalle->cantidad }} x ${{ number_format($detalle->precio_unitario, 2) }}
+                        <span class="float-end">${{ number_format($detalle->cantidad * $detalle->precio_unitario, 2) }}</span>
                     </li>
                     @endforeach
                 </ul>
