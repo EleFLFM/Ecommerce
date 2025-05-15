@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
@@ -70,7 +69,7 @@ Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->nam
 //carrito de compras
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidosController;
- 
+
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
@@ -79,5 +78,5 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 //ruta de pedidos
 Route::post('/pedido/confirmar', [PedidosController::class, 'confirmarPedido'])->name('pedido.confirmar');
 Route::get('/mis-pedidos', [PedidosController::class, 'misPedidos'])->name('pedidos.mis')->middleware('auth');
-Route::get('/pedidos', [PedidosController::class, 'indexAdmin'])->name('pedidos.index')->middleware('auth');
+
 
