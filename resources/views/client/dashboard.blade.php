@@ -22,8 +22,6 @@
         <x-product-card :product="$product" />
     </a>
     @endforeach
-    
-    
 </div>
 
 @endsection
