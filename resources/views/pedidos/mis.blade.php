@@ -121,9 +121,32 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
                 </div>
+                
             </div>
         @endforeach
     @endif
+       <div class="d-flex align-items-center">
+            <a href="{{ route('home') }}" class="dark-btn-primary me-2">Seguir comprando</a>
+            
+        </div>
 </div>
+<style>
+    .dark-btn-primary {
+        background-color: #4299e1;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .dark-btn-primary:hover {
+        background-color: #2b6cb0;
+    }
+
+</style>
 @endsection

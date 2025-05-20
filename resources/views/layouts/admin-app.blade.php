@@ -64,7 +64,7 @@
                 
                 <!-- Otras opciones -->
                 <li>
-                    <a href="{{-- {{ route('admin.orders.index') }} --}}">
+                    <a href="{{ route('pedidos.index') }}">
                         <i class="bi bi-cart-check-fill"></i> Pedidos
                     </a>
                 </li>
