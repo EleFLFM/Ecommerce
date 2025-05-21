@@ -17,10 +17,10 @@
         </div>
     @endif
 
-    <div class="card shadow">
+    <div class="card shadow bg-dark">
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
+            <div class="table-responsive bg-dark">
+                <table class="table table-striped table-hover table-dark text-white">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -71,7 +71,7 @@
 <!-- Modal para Crear Categoría -->
 <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark text-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="createCategoryModalLabel">Crear Nueva Categoría</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -81,7 +81,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre*</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control bg-dark text-white" id="name" name="name" required>
                     </div>
                     
                 </div>
@@ -97,7 +97,7 @@
 <!-- Modal para Editar Categoría -->
 <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark text-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="editCategoryModalLabel">Editar Categoría</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -108,7 +108,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="edit_name" class="form-label">Nombre*</label>
-                        <input type="text" class="form-control" id="edit_name" name="name" required>
+                        <input type="text" class="form-control bg-dark text-white" id="edit_name" name="name" required>
                     </div>
                     {{-- <div class="mb-3">
                         <label for="edit_description" class="form-label">Descripción</label>

@@ -41,10 +41,15 @@ Route::middleware(['auth'])->group(function () {
     ]);
    
      
-     // Usuarios (si necesitas gestión de usuarios)
-    Route::resource('user', UserController::class);
-    Route::get('/users', [UserController::class, 'UserController'])->name('admin.users.index');
-    Route::get('/user/create', [UserController::class, 'UserController'])->name('admin.users.create');
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('users/delete/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::get('users/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
+    
+    
     // Carrito de compras
     Route::resource('cart', CartController::class)->only(['index', 'store', 'update', 'destroy']);
     
@@ -68,6 +73,7 @@ Route::get('/categoria/{slug}', [ProductController::class, 'porCategoria'])->nam
 //carrito de compras
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidosController;
+ 
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
@@ -76,5 +82,7 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 //ruta de pedidos
 Route::post('/pedido/confirmar', [PedidosController::class, 'confirmarPedido'])->name('pedido.confirmar');
 Route::get('/mis-pedidos', [PedidosController::class, 'misPedidos'])->name('pedidos.mis')->middleware('auth');
-
-
+Route::get('/pedidos', [PedidosController::class, 'indexAdmin'])->name('pedidos.index')->middleware('auth');
+Route::put('/pedidos/{pedido}/actualizar-estado', [PedidosController::class, 'actualizarEstado'])
+    ->name('pedidos.actualizar-estado')
+    ->middleware('auth');
