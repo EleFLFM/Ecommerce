@@ -5,7 +5,7 @@
         <div class="product-section">
             <!-- Imágenes del producto -->
             <div class="product-images">
-                <div class="main-image">
+                <div  class="main-image">
                     @if ($producto->image)
                         <img style="object-fit:cover" src="{{ asset('storage/' . $producto->image) }}"
                             alt="{{ $producto->name }}" width="100%" height="100%">
@@ -33,12 +33,21 @@
                         {{-- TALLA --}}
                         <div class="product-options">
                             <div class="option-title">Talla</div>
+                            
                             <div class="size-options">
-                                @foreach (['XS', 'S', 'M', 'L', 'XL'] as $index => $talla)
-                                    <input type="radio" name="talla" value="{{ $talla }}"
-                                        id="talla{{ $index }}" class="talla-radio" required hidden>
-                                    <label for="talla{{ $index }}" class="size-option">{{ $talla }}</label>
-                                @endforeach
+                                @if($producto->category->name === 'Calzado')
+                                    @foreach (range(35, 42) as $index => $talla)
+                                        <input type="radio" name="talla" value="{{ $talla }}"
+                                            id="talla{{ $index }}" class="talla-radio" required hidden>
+                                        <label for="talla{{ $index }}" class="size-option">{{ $talla }}</label>
+                                    @endforeach
+                                @else
+                                    @foreach (['XS', 'S', 'M', 'L', 'XL'] as $index => $talla)
+                                        <input type="radio" name="talla" value="{{ $talla }}"
+                                            id="talla{{ $index }}" class="talla-radio" required hidden>
+                                        <label for="talla{{ $index }}" class="size-option">{{ $talla }}</label>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <style>
@@ -375,8 +384,8 @@
         }
 
         .main-image {
-            width: 100%;
-            height: 500px;
+            width: 441px;
+            height: 588px;
             background-color: #f0f0f0;
             margin-bottom: 15px;
             border-radius: 5px;
