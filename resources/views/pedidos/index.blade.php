@@ -1,6 +1,11 @@
 @extends('layouts.admin-app')
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Incluye toastr para notificaciones (opcional) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <div class="container">
     <div class="row mb-4">
         <div class="col">
@@ -12,54 +17,62 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Cliente</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                            <th>Fecha</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($pedidos as $pedido)
-                        <tr>
-                            <td>#{{ $pedido->id }}</td>
-                            <td>{{ $pedido->usuario->name ?? 'Usuario no encontrado' }}</td>
-                            <td>${{ $pedido->getTotalFormateado() }}</td>
-                            <td>
-                                <span class="badge bg-{{ $pedido->estado === 'pendiente' ? 'warning' : 
-                                    ($pedido->estado === 'completado' ? 'success' : 'danger') }}">
-                                    {{ ucfirst($pedido->estado) }}
-                                </span>
-                            </td>
-                            <td>{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-sm btn-info" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#detallesPedido{{ $pedido->id }}">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-success" 
-                                            onclick="actualizarEstado({{ $pedido->id }}, 'completado')">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-danger" 
-                                            onclick="actualizarEstado({{ $pedido->id }}, 'cancelado')">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="6" class="text-center">No hay pedidos registrados</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($pedidos as $pedido)
+        <tr>
+            <td>#{{ $pedido->id }}</td>
+            <td>{{ $pedido->usuario->name ?? 'Usuario no encontrado' }}</td>
+            <td>${{ $pedido->getTotalFormateado() }}</td>
+            <td>
+                <span class="badge {{ $pedido->estado === 'pendiente' ? 'bg-warning' : 
+                      ($pedido->estado === 'completado' ? 'bg-success' : 'bg-danger') }}">
+                    {{ ucfirst($pedido->estado) }}
+                </span>
+            </td>
+            <td>{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-sm btn-info" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#detallesPedido{{ $pedido->id }}">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                    
+                    @if($pedido->estado !== 'completado')
+                    <button type="button" class="btn btn-sm btn-success" 
+                            onclick="actualizarEstado({{ $pedido->id }}, 'completado')"
+                            title="Marcar como completado">
+                        <i class="bi bi-check-lg"></i>
+                    </button>
+                    @endif
+                    
+                    @if($pedido->estado !== 'cancelado')
+                    <button type="button" class="btn btn-sm btn-danger" 
+                            onclick="actualizarEstado({{ $pedido->id }}, 'cancelado')"
+                            title="Cancelar pedido">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                    @endif
+                </div>
+            </td>
+        </tr>
+        @empty
+        <tr>
+            <td colspan="6" class="text-center">No hay pedidos registrados</td>
+        </tr>
+        @endforelse
+    </tbody>
+</table>
             </div>
         </div>
     </div>
@@ -102,10 +115,50 @@
 
 <script>
 function actualizarEstado(pedidoId, nuevoEstado) {
-    if (confirm('¿Estás seguro de cambiar el estado del pedido?')) {
-        // Aquí deberías hacer una llamada AJAX para actualizar el estado
-        // Por ahora solo recargamos la página
-        window.location.reload();
+    if (confirm(`¿Estás seguro de marcar el pedido #${pedidoId} como ${nuevoEstado}?`)) {
+        fetch(`/pedidos/${pedidoId}/actualizar-estado`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ estado: nuevoEstado })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                // Encuentra la fila por el ID del pedido
+                const rows = document.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    if (row.cells[0].textContent === `#${pedidoId}`) {
+                        // Actualiza el badge de estado
+                        const estadoBadge = row.cells[3].querySelector('span.badge');
+                        estadoBadge.className = `badge ${data.badge_class}`;
+                        estadoBadge.textContent = data.nuevo_estado.charAt(0).toUpperCase() + data.nuevo_estado.slice(1);
+                        
+                        // Actualiza los botones según el nuevo estado
+                        const btnGroup = row.cells[5].querySelector('.btn-group');
+                        if (nuevoEstado === 'completado') {
+                            btnGroup.querySelector('.btn-success').remove();
+                        } else if (nuevoEstado === 'cancelado') {
+                            btnGroup.querySelector('.btn-danger').remove();
+                        }
+                    }
+                });
+                
+                toastr.success(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            toastr.error(error.message || 'Ocurrió un error al actualizar el estado');
+        });
     }
 }
 </script>

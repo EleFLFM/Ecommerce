@@ -83,4 +83,6 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 Route::post('/pedido/confirmar', [PedidosController::class, 'confirmarPedido'])->name('pedido.confirmar');
 Route::get('/mis-pedidos', [PedidosController::class, 'misPedidos'])->name('pedidos.mis')->middleware('auth');
 Route::get('/pedidos', [PedidosController::class, 'indexAdmin'])->name('pedidos.index')->middleware('auth');
-
+Route::put('/pedidos/{pedido}/actualizar-estado', [PedidosController::class, 'actualizarEstado'])
+    ->name('pedidos.actualizar-estado')
+    ->middleware('auth');

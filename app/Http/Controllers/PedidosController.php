@@ -89,4 +89,29 @@ class PedidosController extends Controller
 
         return view('pedidos.mis', compact('pedidos'));
     }
+    public function actualizarEstado(Request $request, Pedido $pedido)
+{
+    $request->validate([
+        'estado' => 'required|in:pendiente,completado,cancelado'
+    ]);
+
+    $pedido->update(['estado' => $request->estado]);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Estado actualizado correctamente',
+        'nuevo_estado' => $request->estado,
+        'badge_class' => $this->getBadgeClass($request->estado)
+    ]);
+}
+
+private function getBadgeClass($estado)
+{
+    return match($estado) {
+        'pendiente' => 'bg-warning',
+        'completado' => 'bg-success',
+        'cancelado' => 'bg-danger',
+        default => 'bg-secondary'
+    };
+}
 }
