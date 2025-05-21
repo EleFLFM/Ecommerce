@@ -41,10 +41,15 @@ Route::middleware(['auth'])->group(function () {
     ]);
    
      
-     // Usuarios (si necesitas gestión de usuarios)
-    Route::resource('user', UserController::class);
-    Route::get('/users', [UserController::class, 'UserController'])->name('admin.users.index');
-    Route::get('/user/create', [UserController::class, 'UserController'])->name('admin.users.create');
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('users/delete/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::get('users/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
+    
+    
     // Carrito de compras
     Route::resource('cart', CartController::class)->only(['index', 'store', 'update', 'destroy']);
     
