@@ -23,10 +23,9 @@
   --card-bg: #121212;
   --card-accent: #d4af37;
   --card-text: #1e293b;
-  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 
-  width: 290px;
-  height: 450px;
+  width: 400px;
+  height: 558px;
   background: var(--card-bg);
   border-radius: 20px;
   position: relative;
@@ -41,12 +40,7 @@
 .card__shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(55, 42, 42, 0.8) 50%,
-    rgba(255, 255, 255, 0) 60%
-  );
+  
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -54,11 +48,7 @@
 .card__glow {
   position: absolute;
   inset: -10px;
-  background: radial-gradient(
-    circle at 50% 0%,
-    rgba(124, 58, 237, 0.3) 0%,
-    rgba(124, 58, 237, 0) 70%
-  );
+ 
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -90,8 +80,8 @@
 
 .card__image {
   width: 100%;
-  height: 80%;
-  background: linear-gradient(45deg, #a78bfa, #8b5cf6);
+  height: 100%;
+  background: linear-gradient(45deg, #e2e0e8, #1f123d);
   border-radius: 12px;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -191,10 +181,10 @@
   z-index: 1;
 }
 
-.card:hover .card__image {
+/* .card:hover .card__image {
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .card:hover .card__title {
   color: var(--card-accent);

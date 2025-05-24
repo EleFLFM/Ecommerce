@@ -5,7 +5,7 @@
         <div class="product-section">
             <!-- Imágenes del producto -->
             <div class="product-images">
-                <div class="main-image">
+                <div  class="main-image">
                     @if ($producto->image)
                         <img style="object-fit:cover" src="{{ asset('storage/' . $producto->image) }}"
                             alt="{{ $producto->name }}" width="100%" height="100%">
@@ -33,12 +33,21 @@
                         {{-- TALLA --}}
                         <div class="product-options">
                             <div class="option-title">Talla</div>
+                            
                             <div class="size-options">
-                                @foreach (['XS', 'S', 'M', 'L', 'XL'] as $index => $talla)
-                                    <input type="radio" name="talla" value="{{ $talla }}"
-                                        id="talla{{ $index }}" class="talla-radio" required hidden>
-                                    <label for="talla{{ $index }}" class="size-option">{{ $talla }}</label>
-                                @endforeach
+                                @if($producto->category->name === 'Calzado')
+                                    @foreach (range(35, 42) as $index => $talla)
+                                        <input type="radio" name="talla" value="{{ $talla }}"
+                                            id="talla{{ $index }}" class="talla-radio" required hidden>
+                                        <label for="talla{{ $index }}" class="size-option">{{ $talla }}</label>
+                                    @endforeach
+                                @else
+                                    @foreach (['XS', 'S', 'M', 'L', 'XL'] as $index => $talla)
+                                        <input type="radio" name="talla" value="{{ $talla }}"
+                                            id="talla{{ $index }}" class="talla-radio" required hidden>
+                                        <label for="talla{{ $index }}" class="size-option">{{ $talla }}</label>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <style>
@@ -123,22 +132,63 @@
                         <input type="number" class="quantity-input" name="cantidad" id="cantidad" value="1"
                             min="1" required>
                         <div style="color: black" class="quantity-btn" onclick="cambiarCantidad(1)">+</div>
+                        
                     </div>
+                    <style>
+                            .stock-indicator {
+                                padding: 0.5rem 1rem;
+                                border-radius: 0.25rem;
+                                font-weight: bold;
+                            }
+
+                            .stock-available {
+                                color: #155724;
+                                /* Dark green */
+                                background-color: #d4edda;
+                                /* Light green */
+                                border: 1px solid #c3e6cb;
+                                /* Slightly darker light green */
+                            }
+
+                            .stock-unavailable {
+                                color: #721c24;
+                                /* Dark red */
+                                background-color: #f8d7da;
+                                /* Light red */
+                                border: 1px solid #f5c6cb;
+                                /* Slightly darker light red */
+                            }
+
+                            .stock-message {
+                                margin-top: 0.5rem;
+                                /* Add a little space above the message */
+                                 width: 230px
+                            }
+                        </style>
+
+                        <div>
+                            @if ($producto->stock == 0)
+                                <p class="stock-indicator stock-unavailable stock-message">No hay stock disponible</p>
+                            @else
+                                <p class="stock-indicator stock-available stock-message">Hay {{ $producto->stock }}
+                                    unidades en stock</p>
+                            @endif
+                        </div>
                     <script>
                         function cambiarCantidad(valor) {
                             const input = document.getElementById('cantidad');
                             let cantidad = parseInt(input.value);
-                    
+
                             if (isNaN(cantidad)) cantidad = 1;
-                    
+
                             cantidad += valor;
-                    
+
                             if (cantidad < 1) cantidad = 1;
-                    
+
                             input.value = cantidad;
                         }
                     </script>
-                                        {{-- OCULTOS --}}
+                    {{-- OCULTOS --}}
                     <input type="hidden" name="producto_id" value="{{ $producto->id }}">
 
                     {{-- BOTÓN --}}
@@ -334,8 +384,8 @@
         }
 
         .main-image {
-            width: 100%;
-            height: 500px;
+            width: 441px;
+            height: 588px;
             background-color: #f0f0f0;
             margin-bottom: 15px;
             border-radius: 5px;
