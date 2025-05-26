@@ -32,7 +32,7 @@
             
             <ul class="sidebar-menu">
                 <li>
-                    <a href="{{ route('admin.dashboard') }}" class="active">
+                    <a href="{{ route('home') }}" class="active">
                         <i class="bi bi-speedometer2"></i> Dashboard
                     </a>
                 </li>
