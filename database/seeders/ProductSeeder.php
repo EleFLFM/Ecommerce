@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             'price' => 82000,
             'stock' => 10,
             'description' => 'Nueva colección de Set ✨ REF VIVIANA 🎀.',
-            'image' => '',
+            'image' => 'products/1.png',
             'category_id' => 1,
 
         ]);

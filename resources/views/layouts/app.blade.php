@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                         @elseif ($categoryCount === 4)
-                            <li class="dropdown">
+                            <li style="z-index: 10" class="dropdown">
                                 <a href="#" class="nav-link">Más categorías <i class="bi bi-chevron-down"></i></a>
                                 <div class="dropdown-content">
                         @endif
@@ -96,7 +96,7 @@
 
                 </li>
 
-                <li class="dropdown">
+                <li style="z-index: 10" class="dropdown">
                     <a href="#"> <i class="bi bi-person-fill"></i>
                         {{ Auth::user()->name }}</a>
                     <div class="dropdown-content">
