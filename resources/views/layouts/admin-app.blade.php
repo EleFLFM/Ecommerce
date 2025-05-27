@@ -45,7 +45,6 @@
                     </a>
                     <div class="sidebar-submenu">
                         <a href="{{ route('admin.users.index') }}">Listar Usuarios</a>
-                        <a href="{{-- {{ route('admin.users.create') }} --}}">Crear Usuario</a>
                     </div>
                 </li>
                 
@@ -77,7 +76,6 @@
             <nav class="admin-topbar">
                 <div class="topbar-left">
                     <button class="sidebar-toggle">
-                        <i class="bi bi-list"></i>
                     </button>
                 </div>
                 

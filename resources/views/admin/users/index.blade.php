@@ -5,9 +5,7 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Gestión de Usuarios</h1>
-        <a href="{{-- {{ route('admin.users.create') }} --}}" class="btn btn-success">
-            <i class="bi bi-person-plus"></i> Nuevo Usuario
-        </a>
+        
     </div>
 
     <!-- Búsqueda -->

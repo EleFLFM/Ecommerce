@@ -24,7 +24,7 @@
 <body style="background-color: #121212">
 
     <div id="app">
-        <nav  class="navbar">
+        <nav class="navbar">
             <div class="logo-container">
                 <div class="logo">
                     <span style="color: #d4af37; font-size: 16px; font-weight: bold;">TL</span>
@@ -227,6 +227,7 @@
         color: #fff;
         padding: 10px 0;
     }
+
     footer {
         background-color: #1a1a1a;
         color: #fff;
@@ -303,6 +304,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -330,7 +332,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -466,90 +468,93 @@
         }
     }
 </style>
-    <div class="comments-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="comments-box">
-                        <h4>Déjanos tu comentario</h4>
-                        <form  method="POST">
-                            @csrf
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" name="name" placeholder="Tu nombre" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="email" class="form-control" name="email" placeholder="Tu correo electrónico" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <textarea class="form-control" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Enviar Comentario</button>
-                        </form>
-                    </div>
+<div class="comments-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="comments-box">
+                    <h4>Déjanos tu comentario</h4>
+                    <form method="POST">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" name="name" placeholder="Tu nombre"
+                                required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control" name="email"
+                                placeholder="Tu correo electrónico" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <textarea class="form-control" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <style>
-        .comments-section {
-            background-color: #1a1a1a;
-            padding: 50px 0;
-            margin-top: -50px;
-        }
+<style>
+    .comments-section {
+        background-color: #1a1a1a;
+        padding: 50px 0;
+        margin-top: -50px;
+    }
 
+    .comments-box {
+        background-color: #222;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .comments-box h4 {
+        color: #d4af37;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .comments-box .form-control {
+        background-color: #333;
+        border: 1px solid #444;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    .comments-box .form-control:focus {
+        background-color: #444;
+        border-color: #d4af37;
+        box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+        color: #fff;
+    }
+
+    .comments-box .form-control::placeholder {
+        color: #888;
+    }
+
+    .comments-box .btn-primary {
+        background-color: #d4af37;
+        border-color: #d4af37;
+        width: 100%;
+        padding: 10px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .comments-box .btn-primary:hover {
+        background-color: #c4a030;
+        border-color: #c4a030;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
         .comments-box {
-            background-color: #222;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
+    }
+</style>
 
-        .comments-box h4 {
-            color: #d4af37;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .comments-box .form-control {
-            background-color: #333;
-            border: 1px solid #444;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .comments-box .form-control:focus {
-            background-color: #444;
-            border-color: #d4af37;
-            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
-            color: #fff;
-        }
-
-        .comments-box .form-control::placeholder {
-            color: #888;
-        }
-
-        .comments-box .btn-primary {
-            background-color: #d4af37;
-            border-color: #d4af37;
-            width: 100%;
-            padding: 10px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .comments-box .btn-primary:hover {
-            background-color: #c4a030;
-            border-color: #c4a030;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .comments-box {
-                padding: 20px;
-            }
-        }
-    </style>
 </html>
 <style>
     * {
@@ -577,7 +582,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -713,6 +718,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -740,7 +746,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -876,6 +882,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -903,7 +910,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1039,6 +1046,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -1066,7 +1074,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1202,6 +1210,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -1229,7 +1238,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1365,6 +1374,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -1392,7 +1402,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1528,6 +1538,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -1555,7 +1566,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1691,6 +1702,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -1718,7 +1730,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1854,6 +1866,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -1881,7 +1894,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -2017,6 +2030,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -2044,7 +2058,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -2180,6 +2194,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -2207,7 +2222,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -2343,6 +2358,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -2370,7 +2386,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -2506,6 +2522,7 @@
         }
     }
 </style>
+
 </html>
 <style>
     * {
@@ -2533,7 +2550,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: #1a1a1a;
-            padding: 0 2rem;
+        padding: 0 2rem;
         height: 80px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
