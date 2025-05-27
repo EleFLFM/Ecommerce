@@ -98,7 +98,7 @@
                 <ul class="list-group list-group-flush bg-dark">
                     @foreach($pedido->detalles as $detalle)
                     <li class="list-group-item bg-dark text-white">
-                        {{ $detalle->producto->nombre }} 
+                      {{ $detalle->producto->name }} 
                         <br>
                         Talla: {{ $detalle->talla }} | Color: {{ $detalle->color }}
                         <br>
