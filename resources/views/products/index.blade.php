@@ -15,10 +15,10 @@
         </div>
     @endif
 
-    <div class="card shadow">
+    <div class="card shadow bg-dark">
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
+            <div class="table-responsive table-dark">
+                <table class="table table-dark table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
