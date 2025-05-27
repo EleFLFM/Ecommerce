@@ -1,4 +1,3 @@
-// filepath: d:\Laravel\eCommerce\resources\views\admin\users\edit.blade.php
 @extends('layouts.admin-app')
 
 @section('content')
@@ -10,8 +9,8 @@
         </a>
     </div>
 
-    <div class="card shadow">
-        <div class="card-body">
+    <div class="card shadow bg-dark text-white">
+        <div class="card-body text-white">
             <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -20,7 +19,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre*</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                            <input type="text" class="bg-dark text-white form-control @error('name') is-invalid @enderror" 
                                    id="name" name="name" value="{{ old('name', $user->name) }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -29,7 +28,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email*</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                            <input type="email" class="bg-dark text-white form-control @error('email') is-invalid @enderror" 
                                    id="email" name="email" value="{{ old('email', $user->email) }}" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -38,9 +37,9 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Nueva Contraseña</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" 
+                            <input type="password" class="bg-dark text-white form-control @error('password') is-invalid @enderror" 
                                    id="password" name="password">
-                            <small class="text-muted">Dejar en blanco para mantener la contraseña actual</small>
+                            <small class="text-white">Dejar en blanco para mantener la contraseña actual</small>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -62,16 +61,15 @@
 
                         <div class="mb-3">
                             <label for="phone" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control @error('phone') is-invalid @enderror" 
+                            <input type="text" class="bg-dark text-white form-control @error('phone') is-invalid @enderror" 
                                    id="phone" name="phone" value="{{ old('phone', $user->phone) }}">
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="mb-3">
                             <label for="address" class="form-label">Dirección</label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" 
+                            <textarea class="bg-dark text-white form-control @error('address') is-invalid @enderror" 
                                       id="address" name="address" rows="3">{{ old('address', $user->address) }}</textarea>
                             @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>

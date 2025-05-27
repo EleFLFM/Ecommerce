@@ -14,7 +14,8 @@
             <form action="{{ route('admin.users.index') }}" method="GET">
                 <div class="row g-2">
                     <div class="col-md-4">
-                        <input type="text" name="search" class="form-control" 
+                        
+                        <input type="text" name="search" class="bg-dark text-white form-control" 
                                placeholder="Buscar por nombre o email..." 
                                value="{{ request('search') }}">
                     </div>
