@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid py-4">
-    <h1 class="mb-4">Panel de Administración-editado3</h1>
+    <h1 class="mb-4">Panel de Administración-editado4</h1>
     <p class="mb-5">Bienvenido, {{ Auth::user()->name }}. Aquí tienes un resumen de tu tienda.</p>
     
     <!-- Tarjetas de Resumen -->
