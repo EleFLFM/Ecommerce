@@ -181,7 +181,7 @@
         }
     </style>
     <div class="floating-buttons">
-        <a href="https://wa.me/+573006879210" target="_blank" class="floating-button whatsapp">
+        <a href="https://wa.me/+573223374989" target="_blank" class="floating-button whatsapp">
             <i class="fab fa-whatsapp"></i>
         </a>
         <a href="https://www.facebook.com/erika.aconcha" target="_blank" class="floating-button facebook">
