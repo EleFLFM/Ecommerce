@@ -1,5 +1,5 @@
 <!-- From Uiverse.io by SachinKumar666 --> 
-<div style="border-color: #d4af37" class="card">
+<div  class="card">
     <div class="card__shine"></div>
     <div class="card__glow"></div>
     <div class="card__content">
@@ -9,19 +9,18 @@
         <span class="text-muted">Sin imagen</span>
         @endif</div>
       <div class="card__text">
-        <h5 style="color:white" class="card-title">{{ $product->name }}</h5>
+        <h5 class="card-title">{{ $product->name }}</h5>
       </div>
       <div class="card__footer">
-        <div style="color:#d4af37" class="card__price"> ${{ number_format($product->price, 2) }}</div>
-        
+        <div class="card__price"> ${{ number_format($product->price, 2) }}</div>
       </div>
     </div>
   </div>
   
 <style>
 .card {
-  --card-bg: #121212;
-  --card-accent: #d4af37;
+  --card-bg: #ffffff;
+  --card-accent: #374ed4;
   --card-text: #1e293b;
 
   width: 400px;
@@ -88,24 +87,7 @@
   overflow: hidden;
 }
 
-.card__image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-      circle at 30% 30%,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 30%
-    ),
-    repeating-linear-gradient(
-      45deg,
-      rgba(139, 92, 246, 0.1) 0px,
-      rgba(139, 92, 246, 0.1) 2px,
-      transparent 2px,
-      transparent 4px
-    );
-  opacity: 0.5;
-}
+
 
 .card__text {
   display: flex;

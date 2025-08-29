@@ -23,7 +23,7 @@
                     @csrf
 
                     <div class="product-info">
-                        <h1 style="color: white" class="product-title">{{ $producto->name }}</h1>
+                        <h1  class="product-title">{{ $producto->name }}</h1>
                         <div class="product-price">${{ number_format($producto->price, 2) }}</div>
 
                         <div class="product-description">
@@ -205,7 +205,7 @@
         /* Variables globales */
         :root {
             --primary-color: #111;
-            --accent-color: #d4af37;
+            --accent-color: #37a7d4;
             --hover-bg: #333;
             --dropdown-bg: #222;
             --text-color: #333;
@@ -214,116 +214,7 @@
             --white: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-        }
-
-        /* Navbar estilos */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--primary-color);
-            padding: 0 2rem;
-            height: 80px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            border: 2px solid var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            text-transform: uppercase;
-            color: var(--accent-color);
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-            font-weight: 400;
-            transition: color 0.3s;
-            position: relative;
-            display: block;
-            padding: 10px 0;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--dropdown-bg);
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-top: 2px solid var(--accent-color);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            color: #f9f9f9;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            border-bottom: 1px solid var(--hover-bg);
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--hover-bg);
-        }
-
-        .dropdown::after {
-            content: '▼';
-            font-size: 10px;
-            margin-left: 5px;
-            position: absolute;
-            right: -15px;
-            top: 12px;
-            color: var(--accent-color);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
 
         .ofertas {
             color: var(--accent-color) !important;

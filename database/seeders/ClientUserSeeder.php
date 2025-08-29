@@ -13,7 +13,7 @@ class ClientUserSeeder extends Seeder
         User::create([
             'name' => 'Cliente Ejemplo',
             'email' => 'client@client.com',
-            'password' => Hash::make('client123'),
+            'password' => Hash::make('cliente'),
             'role' => 'client',
             'phone' => '0987654321',
             'address' => 'Avenida Secundaria #456',
@@ -22,6 +22,6 @@ class ClientUserSeeder extends Seeder
 
         $this->command->info('Usuario cliente creado:');
         $this->command->info('Email: cliente@ecommerce.com');
-        $this->command->info('Password: Cliente1234');
+        $this->command->info('Password: cliente');
     }
 }

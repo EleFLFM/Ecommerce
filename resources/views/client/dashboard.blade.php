@@ -13,35 +13,7 @@
             });
         </script>
     @endif
-    @if (Route::is('homse'))
-        <div class="contenedor">
-            @foreach ($categories as $categoria)
-                @if ($categoria->products->count())
-                    <div id="productosCarrusel" class="carousel slide" data-bs-ride="carousel">
-                        <h3 class="mt-5">{{ $categoria->name }}</h3>
-
-                        <div class="carousel-inner">
-                            @foreach ($categoria->products as $index => $producto)
-                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $producto->image) }}" class="d-block w-100"
-                                        alt="{{ $producto->name }}">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>{{ $producto->name }}</h5>
-                                        <p>${{ number_format($producto->price, 2) }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-
-                    </div>
-                @endif
-            @endforeach
-    @endif
-
-
-
-
+  
     <div class="container d-flex flex-wrap gap-4">
         @foreach ($products as $product)
             <a style="text-decoration: none;" href="{{ route('productos.show', $product->id) }}">

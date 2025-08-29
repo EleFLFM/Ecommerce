@@ -163,12 +163,12 @@
 
 
 
-    <div class="container dark-container">
-        <h2 style="color: #fff;">Carrito de compras</h2>
+    <div class="container">
+        <h2>Carrito de compras</h2>
 
         @if (session('carrito') && count(session('carrito')) > 0)
             <div>
-                <table class="dark-table">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -195,7 +195,7 @@
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $id }}">
                                         <input type="number" name="cantidad" value="{{ $item['cantidad'] }}" min="1"
-                                            class="dark-input-number" onchange="this.form.submit();">
+                                            class="input-number" onchange="this.form.submit();">
                                     </form>
 
                                 </td>
@@ -243,8 +243,8 @@
                         cancelButtonColor: '#718096',
                         confirmButtonText: 'Sí, eliminar',
                         cancelButtonText: 'Cancelar',
-                        background: '#2d3748', // Fondo oscuro para el popup
-                        color: '#cbd5e0', // Texto claro
+                         // Fondo oscuro para el popup
+                         // Texto claro
 
                     }).then((result) => {
                         if (result.isConfirmed) {
